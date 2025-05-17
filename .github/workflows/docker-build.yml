@@ -1,0 +1,32 @@
+name: Docker Build & Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Build with Cargo
+        run: cargo build --release
+
+      - name: Build Docker Image
+        run: docker build -t tbc .
+
+      - name: Run Docker Container
+        run: docker run --rm tbc
