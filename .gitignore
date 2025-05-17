@@ -1,0 +1,33 @@
+# Rust output directories
+/target/
+**/*.rs.bk
+
+# Cargo.lock should be included for binary projects and excluded for library projects
+# More information: https://doc.rust-lang.org/cargo/guide/cargo-toml-vs-cargo-lock.html
+Cargo.lock
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# MacOS file system
+.DS_Store
+
+# Code coverage reports
+cobertura.xml
+tarpaulin-report.html
+
+# Profiling files
+callgrind.out.*
+perf.data
+perf.data.old
+flamegraph.svg
+
+# Documentation
+/doc/
+
+# Build scripts (if any)
+/scripts/target/
