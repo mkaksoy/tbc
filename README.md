@@ -1,8 +1,14 @@
 # TBC
 ![Technologies](https://skillicons.dev/icons?i=rust,git,docker,vscode)
 
-## Introduction
-**TBC (Terminal Based -Anonymous- Communication)** is a terminal-based **anonymous** communication platform, currently under active development.
+## Introduction  
+**TBC (Terminal Based - Anonymous - Communication)** is a simple chat app that runs in the terminal and keeps you completely anonymous.  
+
+You can run your own server on your computer, and others can connect to it—whether they are on the same local network or connecting over the internet.
+
+This setup makes TBC flexible and resilient, perfect for private, secure chats without the usual limits of centralized platforms.
+
+TBC is lightweight, fast, and easy to use—all from your terminal. More features like encrypted messages and easy setup are coming soon.
 
 ## How to use
 **[coming soon]**
