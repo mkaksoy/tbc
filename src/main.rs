@@ -1,3 +1,10 @@
+mod utils;
+mod errors;
+mod core;
+mod enums;
+
 fn main() {
-    println!("Hello, TBC!");
+    let console = core::console::Console::new();
+
+    // Coming soon
 }
