@@ -2,6 +2,9 @@ use argon2::{Argon2, Params};
 use base64::{Engine, engine::general_purpose::STANDARD_NO_PAD};
 use rand::{TryRngCore, rngs::OsRng};
 
+use hmac::{Hmac, Mac};
+use sha2::Sha256;
+
 use crate::errors::certificate_error::CertificateError;
 
 pub fn generate_random_salt() -> Result<String, CertificateError> {
@@ -49,3 +52,19 @@ pub fn generate_hash(value: &str, salt: Option<String>) -> Result<String, Certif
 
     Ok(STANDARD_NO_PAD.encode(&full))
 }
+
+pub fn sign_certificate(content: &str, password: &str) -> String {
+    let mut mac: Hmac<Sha256> = Hmac::<Sha256>::new_from_slice(password.as_bytes()).unwrap();
+    mac.update(content.as_bytes());
+    let result = mac.finalize().into_bytes();
+    STANDARD_NO_PAD.encode(result)
+}
+
+pub fn verify_signature(content: &str, signature: &str, password: &str) -> bool {
+    let mut mac: Hmac<Sha256> = Hmac::<Sha256>::new_from_slice(password.as_bytes()).unwrap();
+    mac.update(content.as_bytes());
+
+    let expected = STANDARD_NO_PAD.decode(signature).unwrap();
+    mac.verify_slice(&expected).is_ok()
+}
+
